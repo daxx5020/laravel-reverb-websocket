@@ -48,7 +48,7 @@ const ChatBox = ({ rootUrl }) => {
         <div className="row justify-content-center">
             <div className="col-md-8">
                 <div className="card">
-                    <div className="card-header">Chat Box</div>
+                    <div className="card-header bg-primary bg-gradient bg-opacity-75 fw-bold">Chat Book</div>
                     <div className="card-body"
                          style={{height: "500px", overflowY: "auto"}}>
                         {
