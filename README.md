@@ -1,66 +1,109 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+<h1>Laravel 11 WebSocket Project Setup Guide</h1>
 
-## About Laravel
+<img src="https://github.com/daxx5020/laravel-reverb-websocket/assets/121967015/c454c22f-d439-4dd4-b952-fbda2abbef20" alt="Laravel Logo" style="width: 1000px; height: auto;">
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+<h2>Step 1: Copy Environment File</h2>
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+<p>Copy the <code>.env.example</code> file to <code>.env</code>:</p>
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+<pre><code>cp .env.example .env</code></pre>
 
-## Learning Laravel
+<h2>Step 2: Install Dependencies</h2>
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+<p>Install the project dependencies using Composer:</p>
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+<pre><code>composer install</code></pre>
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+<h2>Step 3: Generate Application Key</h2>
 
-## Laravel Sponsors
+<p>Generate the application key:</p>
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+<pre><code>php artisan key:generate</code></pre>
 
-### Premium Partners
+<h2>Step 4: Configure Database</h2>
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[WebReinvent](https://webreinvent.com/)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Jump24](https://jump24.co.uk)**
-- **[Redberry](https://redberry.international/laravel/)**
-- **[Active Logic](https://activelogic.com)**
-- **[byte5](https://byte5.de)**
-- **[OP.GG](https://op.gg)**
+<p>Create a MySQL database and set the database credentials in the <code>.env</code> file:</p>
 
-## Contributing
+<pre><code>DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE="&lt;database_name&gt;"
+DB_USERNAME="&lt;username&gt;"
+DB_PASSWORD="&lt;password&gt;"</code></pre>
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+<h2>Step 5: Setup Reverb Credentials</h2>
 
-## Code of Conduct
+<p>Configure Reverb credentials in the <code>.env</code> file:</p>
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+<pre><code>BROADCAST_CONNECTION=reverb
 
-## Security Vulnerabilities
+REVERB_APP_ID=
+REVERB_APP_KEY=
+REVERB_APP_SECRET=
+REVERB_HOST="localhost"
+REVERB_PORT=8080
+REVERB_SCHEME=http
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+VITE_REVERB_APP_KEY="${REVERB_APP_KEY}"
+VITE_REVERB_HOST="${REVERB_HOST}"
+VITE_REVERB_PORT="${REVERB_PORT}"
+VITE_REVERB_SCHEME="${REVERB_SCHEME}"</code></pre>
 
-## License
+<h2>Step 6: Optimize Application Cache</h2>
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+<p>Optimize the application cache:</p>
+
+<pre><code>php artisan optimize</code></pre>
+
+<h2>Step 7: Run Migrations</h2>
+
+<p>Run the database migrations:</p>
+
+<pre><code>php artisan migrate:fresh</code></pre>
+
+<h2>Step 8: Install NPM Dependencies</h2>
+
+<p>Install the NPM dependencies:</p>
+
+<pre><code>npm install</code></pre>
+
+<h2>Step 9: Build Assets</h2>
+
+<p>Build the assets:</p>
+
+<pre><code>npm run build</code></pre>
+
+<h2>Step 10: [Optional] Watch Assets for Changes</h2>
+
+<p>For development, you can watch the assets for changes:</p>
+
+<pre><code>npm run dev</code></pre>
+
+<h2>Step 11: Start WebSocket Server</h2>
+
+<p>Start the WebSocket server:</p>
+
+<pre><code>php artisan reverb:start</code></pre>
+
+<h2>Step 12: Start Listening to Queue Jobs</h2>
+
+<p>Start listening to Queue jobs:</p>
+
+<pre><code>php artisan queue:listen</code></pre>
+
+<h2>Step 13: Start Development Server</h2>
+
+<p>Start the development server using the following command or configure a virtual host:</p>
+
+<pre><code>php artisan serve</code></pre>
+
+</body>
+</html>
