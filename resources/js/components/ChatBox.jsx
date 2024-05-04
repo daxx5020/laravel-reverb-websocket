@@ -19,7 +19,7 @@ const ChatBox = ({ rootUrl }) => {
 
     const connectWebSocket = () => {
         window.Echo.private(webSocketChannel)
-            .listen('GotMessage', async (e) => {
+            .listen('RecieveMessage', async (e) => {
                 // e.message
                 await getMessages();
             });
